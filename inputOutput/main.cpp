@@ -11,7 +11,11 @@ using namespace std;
 string stringReverse(string words);
 
 int main(){
+    //test driver.
+    string testInput = "Mary had a little lamb";
+    cout << testInput << endl;
     
+    cout << stringReverse(testInput) << endl;
     
     
     return 0;
@@ -19,24 +23,31 @@ int main(){
 }
 
 string stringReverse(string words) {
-    const int BIG_NUM=25; //this is hacky, but I don't need to overcomplicate things
-    string outputArray[BIG_NUM];
-    string buffer;
-    string output;
     int start = 0;
+    string buffer;
+    const int BIG_NUM=25;
+    string outputArray[BIG_NUM];//be aware, this will only work for strings of 25 words or fewer.
+    int spaceLocation=0;
     int wordCount = 0;
-    for (int i = 0; i<words.length(); i++) {//backstiching the words into an array
-        if (words[i] == ' '){               //find the first space, go back to start, copy up to space, rinse repeat.
-            for (int j=start; j<i; j++) buffer[j] = words[j];
-            outputArray[wordCount] = buffer;
-            start=i;
-            wordCount++;
-            }
-    }
+    int wordLength = 0;
+    string output;
     
-    for (int foo=wordCount; foo >0; foo--){
+    do {
+        spaceLocation = words.find(' ', start);
+        wordLength = spaceLocation - start;
+        outputArray[wordCount] = words.substr(start, wordLength);//break out individual words into an string array
+        wordCount++;
+        start = spaceLocation+1;
+        
+        
+    } while (spaceLocation!=std::string::npos);
+   
+    
+    
+    
+    for (int foo=wordCount; foo >=0; foo--){
         output += outputArray[foo]; //finally, reverse the order of the words, and return the output.
-    output += ' ';
-        }
-    return output;
+        output += ' ';
     }
+    return output;
+}
