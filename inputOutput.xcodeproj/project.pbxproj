@@ -28,6 +28,7 @@
 		CDB2E60F1938145800578546 /* inputOutput */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = inputOutput; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB2E6121938145800578546 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		CDB2E6141938145800578546 /* inputOutput.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = inputOutput.1; sourceTree = "<group>"; };
+		CDB2E61D1939998100578546 /* text.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = text.bin; path = inputOutput/text.bin; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +47,7 @@
 			children = (
 				CDB2E6111938145800578546 /* inputOutput */,
 				CDB2E6101938145800578546 /* Products */,
+				CDB2E61D1939998100578546 /* text.bin */,
 			);
 			sourceTree = "<group>";
 		};

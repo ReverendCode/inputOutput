@@ -5,26 +5,36 @@
 //  Created by David Wenzel on 5/29/14.
 //  Copyright (c) 2014 David Wenzel. All rights reserved.
 //
-
+#include <unistd.h>
 #include <iostream>
+#include <fstream>
 using namespace std;
 string stringReverse(string words);
 
 int main(){
-    //test driver.
-    string testInput = "Mary had a little lamb";
-    cout << testInput << endl;
+    string bufferString;
+    fstream textFile, binFile, mixedFile;
+    string directory=getcwd(NULL, 0); //should get the current working directory because xcode loves to look in stupid places otherwise
+    textFile.open(directory + "/text.bin", ios::in);
+    getline(textFile, bufferString);
+    cout << stringReverse(bufferString);
     
-    cout << stringReverse(testInput) << endl;
-    
+    struct binary {int a; float b; char letters[6];}; //next the binary file.
+    binary info;
+    binFile.open(directory+"/bin_data.bin", ios::in | ios::binary);
+    binFile.read(reinterpret_cast<char *>(&info), sizeof(info));
+    while (!binFile.eof()) {
+        cout << endl << info.a << ' ' << info.b << ' ' << info.letters << endl;
+        binFile.read(reinterpret_cast<char *>(&info), sizeof(info));
+    }
+    mixedFile.open(directory+"/mixed.bin", ios::in);
+    //working on the final file access type.
     
     return 0;
-    
 }
 
 string stringReverse(string words) {
     int start = 0;
-    string buffer;
     const int BIG_NUM=25;
     string outputArray[BIG_NUM];//be aware, this will only work for strings of 25 words or fewer.
     int spaceLocation=0;
